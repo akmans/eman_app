@@ -39,12 +39,15 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-group :development do
-  gem 'rspec-rails', '2.0.1'
+group :development, :test do
+  gem 'rspec-rails'
+#  gem 'webrat', '0.7.1'
+  gem 'capybara'
 end
 
 group :test do
-  gem 'rspec', '2.0.1'
-  gem 'webrat', '0.7.1'
+  gem 'minitest'
+  gem 'rspec'
+  gem 'spork'
 end
 
