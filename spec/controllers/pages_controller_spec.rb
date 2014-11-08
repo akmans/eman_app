@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe PagesController, :type => :controller do
   render_views
 
+  before(:each) do
+    @base_titile = "Ruby on Rails Tutorial Sample App"
+  end
+
   describe "GET 'home'" do
     it "should be successful" do
       get :home
@@ -12,8 +16,8 @@ RSpec.describe PagesController, :type => :controller do
 
     it "should have the right title" do
       get 'home'
-      within('head title') { response.should
-             have_content "Ruby on Rails Tutorial Sample App | Home" }
+      within('head title') {response.should have_content
+                            @base_title + " | Home" }
     end
   end
 
@@ -21,12 +25,13 @@ RSpec.describe PagesController, :type => :controller do
     it "should be successful" do
       get :contact
       response.should be_success
+      expect(response).to have_http_status(200)
     end
 
     it "should have the right title" do
       get 'contact'
       within('head title') { response.should have_content
-                        "Ruby on Rails Tutorial Sample App | Contact"}
+          @base_title + " | Contact"}
     end
   end
 
@@ -34,12 +39,27 @@ RSpec.describe PagesController, :type => :controller do
     it "should be successful" do
       get 'about'
       response.should be_success
+      expect(response).to have_http_status(200)
     end
 
     it "should have the right title" do
       get 'about'
       within('head title') { response.should have_content
-                        "Ruby on Rails Tutorial Sample App | About"}
+          @base_title + " | About"}
+    end
+  end
+
+  describe "GET 'help'" do
+    it "should be successful" do
+      get :help
+      response.should be_success
+      expect(response).to have_http_status(200)
+    end
+
+    it "should have the right title" do
+      get :help
+      within('head title') { response.should have_content
+          @base_title + " | Help"}
     end
   end
 end
