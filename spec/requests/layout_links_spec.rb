@@ -7,24 +7,32 @@ RSpec.describe "LayoutLinks", :type => :request do
 #      expect(response).to have_http_status(200)
 #    end
 #  end
+  before(:each) do
+    @base_title = "Ruby on Rails Tutorial Sample App"
+  end
 
   it "should have a Home page at '/'" do
     get '/'
-    within('head title') { response.should have_content "Home" }
+    expect(response.body).to include( @base_title + " | Home" )
   end
 
   it "should have a Contact page at '/contact'" do
     get '/contact'
-    within('head title') { response.should have_content "Contact" }
+    expect(response.body).to include( @base_title + " | Contact" )
   end
 
   it "should have an About page at '/about'" do
     get '/about'
-    within('head title') { response.should have_content "About" }
+    expect(response.body).to include( @base_title + " | About" )
   end
 
   it "should have a Help page at '/help'" do
     get '/help'
-    within('head title') { response.should have_content "Help" }
+    expect(response.body).to include( @base_title + " | Help" )
+  end
+
+  it "should have signup page at '/signup'" do
+    get '/signup'
+    expect(response.body).to include( @base_title + " | Sign up" )
   end
 end

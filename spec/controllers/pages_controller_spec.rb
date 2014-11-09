@@ -4,7 +4,7 @@ RSpec.describe PagesController, :type => :controller do
   render_views
 
   before(:each) do
-    @base_titile = "Ruby on Rails Tutorial Sample App"
+    @base_title = "Ruby on Rails Tutorial Sample App"
   end
 
   describe "GET 'home'" do
@@ -16,8 +16,7 @@ RSpec.describe PagesController, :type => :controller do
 
     it "should have the right title" do
       get 'home'
-      within('head title') {response.should have_content
-                            @base_title + " | Home" }
+      expect(response.body).to have_title( @base_title + ' | Home' )
     end
   end
 
@@ -30,8 +29,7 @@ RSpec.describe PagesController, :type => :controller do
 
     it "should have the right title" do
       get 'contact'
-      within('head title') { response.should have_content
-          @base_title + " | Contact"}
+      expect(response.body).to have_title( @base_title + " | Contact")
     end
   end
 
@@ -44,8 +42,7 @@ RSpec.describe PagesController, :type => :controller do
 
     it "should have the right title" do
       get 'about'
-      within('head title') { response.should have_content
-          @base_title + " | About"}
+      expect(response.body).to have_title( @base_title + " | About")
     end
   end
 
@@ -58,8 +55,7 @@ RSpec.describe PagesController, :type => :controller do
 
     it "should have the right title" do
       get :help
-      within('head title') { response.should have_content
-          @base_title + " | Help"}
+      expect(response.body).to have_title( @base_title + " | Help")
     end
   end
 end
